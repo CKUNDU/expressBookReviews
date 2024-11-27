@@ -22,9 +22,20 @@ public_users.post("/register", (req, res) => {
     return res.status(201).json({ message: "User registered successfully" });
 });
 
-// Get the book list available in the shop
-public_users.get('/', (req, res) => {
-    return res.status(200).json({ books });
+// Get the book list available in the shop using async/await
+public_users.get('/', async (req, res) => {
+  try {
+      // Simulate fetching books (you can replace this with actual async code if needed)
+      const booksList = await new Promise((resolve) => {
+          // Mimicking an async operation (like reading a file or querying a DB)
+          setTimeout(() => resolve(books), 1000); // Replace with actual async code
+      });
+
+      return res.status(200).json({ books: booksList });
+  } catch (error) {
+      console.error("Error fetching books:", error);
+      return res.status(500).json({ message: "Error retrieving books" });
+  }
 });
 
 // Get book details based on ISBN
