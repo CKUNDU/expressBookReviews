@@ -22,7 +22,7 @@ async function getBooksByTitle(title) {
 }
 
 async function getBookReviews(isbn) {
-    const [rows] = await db.query('SELECT * FROM reviews WHERE isbn = ?', [isbn]);
+    const [rows] = await db.query('SELECT * FROM books WHERE isbn = ?', [isbn]);
     return rows.length > 0 ? rows : null;
 }
 
